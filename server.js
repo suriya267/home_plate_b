@@ -1,8 +1,11 @@
 const express = require("express");
+const dotenv = require("dotenv");
 const cors = require("cors");
 const recipeRoutes = require("./routes/recipesRoutes");
 const { createMongooseConnetion } = require("./config/mongoDBConnection");
-const port = 8080;
+dotenv.config();
+const PORT = process.env.PORT || 8080;
+console.log("PORT", PORT);
 
 const server = express();
 
@@ -13,10 +16,10 @@ server.use(cors());
 
 server.use("/api/recipe", recipeRoutes);
 
-server.listen(port, (error) => {
+server.listen(PORT, (error) => {
   if (error) {
-    console.log("Error in connect server");
+    console.log("Error in connect server::",error);
   } else {
-    console.log("Server listening port 8080");
+    console.log(`Server listening port ${PORT}`);
   }
 });
