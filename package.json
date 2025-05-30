@@ -4,7 +4,9 @@
   "description": "HomePlate is your personalized recipe app for discovering, saving, and sharing delicious homemade meals.",
   "main": "server.js",
   "scripts": {
-    "start":"nodemon server.js",
+    "dev": "nodemon server.js",
+    "prod": "node server.js",
+    "start": "npm run prod",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,6 +21,7 @@
   "homepage": "https://github.com/suriya267/home_plate_b#readme",
   "dependencies": {
     "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
     "express": "^5.1.0",
     "mongoose": "^8.15.1"
   },
