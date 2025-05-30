@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>All Recipes</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f9f9f9;
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 6px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .add-btn {
+        display: inline-block;
+        margin-bottom: 20px;
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 18px;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+      }
+
+      .add-btn:hover {
+        background-color: #45a049;
+      }
+
+      .recipe {
+        border-bottom: 1px solid #ccc;
+        padding: 15px 0;
+      }
+
+      .recipe:last-child {
+        border-bottom: none;
+      }
+
+      .recipe h2 {
+        margin: 0;
+      }
+
+      .recipe p {
+        margin: 5px 0;
+      }
+
+      img {
+        max-width: 200px;
+        border-radius: 4px;
+        margin-top: 10px;
+      }
+
+      .actions {
+        margin-top: 10px;
+      }
+
+      .button {
+        background-color: #3498db;
+        color: white;
+        padding: 8px 14px;
+        text-decoration: none;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-right: 5px;
+      }
+
+      .button:hover {
+        background-color: #2980b9;
+      }
+
+      .danger {
+        background-color: #e74c3c;
+      }
+
+      .danger:hover {
+        background-color: #c0392b;
+      }
+
+      form {
+        display: inline;
+      }
+
+      .recipe-title {
+        text-decoration: none;
+        color: #2c3e50;
+        transition: color 0.3s;
+      }
+
+      .recipe-title h2 {
+        margin: 0;
+      }
+
+      .recipe-title:hover {
+        color: #2980b9;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Recipe List</h1>
+      <a href="/recipes/new" class="add-btn">+ Add New Recipe</a>
+
+      <% if (recipes.length === 0) { %>
+      <p>No recipes found.</p>
+      <% } else { %> <% recipes.forEach(recipe => { %>
+      <div class="recipe">
+        <a href="/recipes/one/<%= recipe._id %>" class="recipe-title">
+          <h2><%= recipe.title %></h2>
+        </a>
+        <p>
+          <strong>Ingredients:</strong> <%= recipe.ingredients.join(', ') %>
+        </p>
+        <p><strong>Instructions:</strong> <%= recipe.instructions %></p>
+        <% if (recipe.image) { %>
+        <img src="<%= recipe.image %>" alt="Recipe Image" />
+        <% } %>
+
+        <div class="actions">
+          <a href="/recipes/edit/<%= recipe._id %>" class="button">Edit</a>
+          <form action="/recipes/delete/<%= recipe._id %>" method="POST">
+            <button type="submit" class="button danger">Delete</button>
+          </form>
+        </div>
+      </div>
+      <% }) %> <% } %>
+    </div>
+  </body>
+</html>

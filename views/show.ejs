@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title><%= recipe.title %> - Recipe</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 700px;
+        margin: auto;
+        background: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        margin-top: 0;
+        color: #333;
+      }
+
+      img {
+        max-width: 100%;
+        border-radius: 4px;
+        margin: 20px 0;
+      }
+
+      p {
+        line-height: 1.6;
+        color: #444;
+      }
+
+      ul {
+        padding-left: 20px;
+      }
+
+      .button {
+        display: inline-block;
+        margin-right: 10px;
+        background-color: #3498db;
+        color: white;
+        padding: 10px 16px;
+        border: none;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 14px;
+      }
+
+      .button:hover {
+        background-color: #2980b9;
+      }
+
+      .danger {
+        background-color: #e74c3c;
+      }
+
+      .danger:hover {
+        background-color: #c0392b;
+      }
+
+      .back-link {
+        display: block;
+        margin-top: 30px;
+        color: #555;
+        text-decoration: none;
+      }
+
+      .back-link:hover {
+        text-decoration: underline;
+      }
+
+      form {
+        display: inline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1><%= recipe.title %></h1>
+
+      <% if (recipe.image) { %>
+      <img src="<%= recipe.image %>" alt="Recipe Image" />
+      <% } %>
+
+      <h3>Ingredients:</h3>
+      <ul>
+        <% recipe.ingredients.forEach(ingredient => { %>
+        <li><%= ingredient %></li>
+        <% }) %>
+      </ul>
+
+      <h3>Instructions:</h3>
+      <p><%= recipe.instructions %></p>
+
+      <div class="actions">
+        <a href="/recipes/edit/<%= recipe._id %>" class="button">Edit</a>
+
+        <form action="/recipes/delete/<%= recipe._id %>" method="POST">
+          <button type="submit" class="button danger">Delete</button>
+        </form>
+      </div>
+
+      <a href="/recipes" class="back-link">← Back to all recipes</a>
+    </div>
+  </body>
+</html>
