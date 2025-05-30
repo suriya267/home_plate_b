@@ -5,7 +5,6 @@ const recipeRoutes = require("./routes/recipesRoutes");
 const { createMongooseConnetion } = require("./config/mongoDBConnection");
 dotenv.config();
 const PORT = process.env.PORT || 8080;
-console.log("PORT", PORT);
 
 const server = express();
 
