@@ -6,7 +6,6 @@ async function createMongooseConnetion() {
     console.log("mongoDB connection success");
   } catch (error) {
     console.log("mongoDB connection error::", error);
-    console.log("process.env.MONGO_URI", process.env.MONGO_URI);
   }
 }
 
